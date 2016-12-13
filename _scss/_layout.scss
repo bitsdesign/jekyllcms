@@ -1,0 +1,73 @@
+@import "susy";
+
+/* Susy map specifying the width and number of columns in our layout. By default the gutters are set to 25% of a column width */
+$susy:(
+  container: 1200px,
+  columns: 12
+);
+
+* {
+  box-sizing: border-box;
+}
+
+p span {
+  font-style: italic;
+  color: $bright-white;
+}
+
+main {
+  @include container(); // Using Susy’s container mixin to set a max-width and center content.
+  padding: 1.5em;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; // If width of items exceeds the container the items will wrap to the next line.
+  min-height: 10em;
+}
+
+.col {
+  background-color: $vivid-orange;
+  padding: 2em;
+  margin-bottom: gutter();
+  // border-radius: 50%;
+//   border-radius: 10px;
+// box-shadow: 5px 5px 10px white;
+border-radius: 10px;
+box-shadow: 2px 2px 5px rgba(0,0,0,0.5),
+            10px 10px 15px rgba(0,0,0,0.5),
+            -1px -1px 30px rgba(0,0,0,0.2);
+            height:15em;
+}
+
+.col-1 {
+  width: span(3);
+}
+
+.col-2 {
+  width: span(5);
+}
+
+.col-3 {
+  width: span(4);
+}
+
+.col-4 {
+  width: span(5);
+}
+
+.col-5 {
+  width: span(5);
+}
+
+.col-6 {
+  width: span(2);
+}
+
+.col-7,
+.col-8,
+.col-9,
+.col-10 {
+  width: span(3);
+}

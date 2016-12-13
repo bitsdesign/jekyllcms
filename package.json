@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/bitsdesign/Starter-Site-Setup.git"
   },
   "keywords": [
     "jekyll",

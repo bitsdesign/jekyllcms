@@ -3,6 +3,9 @@ var browserSync = require('browser-sync');
 var sass        = require('gulp-sass');
 var prefix      = require('gulp-autoprefixer');
 var cp          = require('child_process');
+var jade       = require('gulp-jade');
+var paths = require('compass-options').dirs();
+var compass = require('gulp-compass');
 
 var jekyll   = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
 var messages = {
@@ -39,16 +42,44 @@ gulp.task('browser-sync', ['sass', 'jekyll-build'], function() {
 /**
  * Compile files from _scss into both _site/css (for live injecting) and site (for future jekyll builds)
  */
-gulp.task('sass', function () {
-    return gulp.src('_scss/main.scss')
-        .pipe(sass({
-            includePaths: ['scss'],
-            onError: browserSync.notify
-        }))
-        .pipe(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
-        .pipe(gulp.dest('_site/css'))
-        .pipe(browserSync.reload({stream:true}))
-        .pipe(gulp.dest('css'));
+// gulp.task('sass', function () {
+//     return gulp.src('_scss/main.scss')
+//         .pipe(sass({
+//             includePaths: ['scss'],
+//             onError: browserSync.notify
+//         }))
+//         .pipe(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
+//         .pipe(gulp.dest('_site/css'))
+//         .pipe(browserSync.reload({stream:true}))
+//         .pipe(gulp.dest('css'));
+// });
+/*
+Compass Sass task*/
+
+gulp.task('sass', function() {
+  browserSync.notify('<span style="color: grey">Running:</span> Sass compiling');
+  return gulp.src(paths.sass + '/**/*.scss')
+    .pipe(compass({
+      config_file: './config.rb',
+      css: paths.css,
+      sass: paths.sass,
+      bundle_exec: true,
+      time: true
+    }))
+    .pipe(prefix("last 2 versions", "> 1%"))
+    .pipe(gulp.dest('css'))
+    .pipe(gulp.dest('_site/css'))
+    .pipe(browserSync.reload({stream:true}));
+});
+
+/*
+Jade task
+*/
+
+gulp.task('jade' , function(){
+  return gulp.src('_jadefiles/*.jade')
+  .pipe(jade())
+  .pipe(gulp.dest('_includes'));
 });
 
 /**
@@ -57,7 +88,8 @@ gulp.task('sass', function () {
  */
 gulp.task('watch', function () {
     gulp.watch('_scss/*.scss', ['sass']);
-    gulp.watch(['*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
+    gulp.watch(['*.html', '_layouts/*.html', '_includdes/*'], ['jekyll-rebuild']);
+    gulp.watch(['_jadefiles/*.jade'], ['jade']);
 });
 
 /**

@@ -1,13 +1,13 @@
 {
-  "name": "browser-sync-jekyll",
-  "version": "0.0.0",
-  "description": "A starter project including full setup for Jekyll, GulpJS, SASS & BrowserSync",
+  "name": "jekyll-sass-compass-jade-browser-sync",
+  "version": "0.0.1",
+  "description": "A starter project including full setup for Jekyll, GulpJS, SASS, Compass & BrowserSync",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Shane Osbourne",
-  "license": "ISC",
+  "author": "Shaun Sandy",
+  "license": "MIT",
   "devDependencies": {
     "browser-sync": "^1.3.7",
     "compass-options": "^0.1.1",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/shakyShane/jekyll-gulp-sass-browser-sync.git"
+    "url": ""
   },
   "keywords": [
     "jekyll",
@@ -28,7 +28,7 @@
     "browsersync"
   ],
   "bugs": {
-    "url": "https://github.com/shakyShane/jekyll-gulp-sass-browser-sync/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/shakyShane/jekyll-gulp-sass-browser-sync"
+  "homepage": ""
 }
